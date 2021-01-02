@@ -5,11 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
+import android.text.TextWatcher;i
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -29,7 +27,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.text.Normalizer;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -79,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 simpleAdapter.getFilter().filter(s);
             }
 
-            // 下面两个方法可以直接无视
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
                                           int after) {
