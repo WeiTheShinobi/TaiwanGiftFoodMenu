@@ -1,4 +1,5 @@
 # TaiwanGiftFoodMenu  
+這是一個Android的應用程式
 ## 功能：  
 1.從政府資料開放平台抓取資料並整理排列  
 2.搜尋資料  
