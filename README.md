@@ -1,6 +1,6 @@
 # TaiwanGiftFoodMenu  
 ## Feature:  
-*grab data from goverment opendata website  
-*list gift from goverment data  
-*search data  
-*watch picture thought click  
+1.Grab data from goverment opendata website.  
+2.List gift from goverment data.  
+3.Search data.  
+4.Watch picture thought click.  
