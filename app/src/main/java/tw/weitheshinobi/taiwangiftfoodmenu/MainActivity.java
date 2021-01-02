@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        listView = findViewById(R.id.list);
+        query = findViewById(R.id.query);
 
         dia = new Dialog(this);
         dia.setContentView(R.layout.dialog);
@@ -70,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initQuery(){
-        query = findViewById(R.id.query);
         query.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before,
@@ -90,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initList(){
-        listView = findViewById(R.id.list);
         simpleAdapter = new SimpleAdapter(this,data,R.layout.item,from,to);
         listView.setAdapter(simpleAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
