@@ -7,9 +7,12 @@ import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.media.Image;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -39,28 +42,55 @@ public class MainActivity extends AppCompatActivity {
     private int[] to = {R.id.item_name,R.id.item_sp,R.id.item_so,R.id.item_sap};
     private Dialog dia;
     private ImageView imageView;
+    private EditText query;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("農產伴手禮圖鑑").setMessage("點擊項目可顯示圖片\n\n資料來源：行政院農委會");
-        builder.show();
         dia = new Dialog(this);
         dia.setContentView(R.layout.dialog);
         imageView = dia.findViewById(R.id.dialog_img);
 
-        listView = findViewById(R.id.list);
         initList();
         queue = Volley.newRequestQueue(this);
         imgQueue = Volley.newRequestQueue(this);
         fetchData();
+        initQuery();
 
     }
 
-    private void  initList(){
+    @Override
+    protected void onStart() {
+        super.onStart();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("農產伴手禮圖鑑").setMessage("點擊項目可顯示圖片\n\n資料來源：行政院農委會");
+        builder.show();
+    }
+
+    private void initQuery(){
+        query = findViewById(R.id.query);
+        query.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before,
+                                      int count) {
+                simpleAdapter.getFilter().filter(s);
+            }
+
+            // 下面两个方法可以直接无视
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+    }
+
+    private void initList(){
+        listView = findViewById(R.id.list);
         simpleAdapter = new SimpleAdapter(this,data,R.layout.item,from,to);
         listView.setAdapter(simpleAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
